@@ -1,25 +1,80 @@
-// Batalha Naval - Nível Novato
+// Batalha Naval - Nível Aventureiro
 
 #include <stdio.h>
 
+#define LINHAS 10 // definição do tamanho do tabuleiro
+#define COLUNAS 10
+
 int main(){
 
-    int tabuleiro [10][10] = {  //utilizando uma matriz para criar o tabuleiro
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 3, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 3, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 3, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 3, 3, 3, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-    };
-
-    for (int i = 0; i <= 9; i++) //loop aninhado para imprimir todos os elementos da matriz
+    int tabuleiro [LINHAS][COLUNAS];
+    int navio_horizontal_linha = 5;  // as posições iniciais são inseridas diretamente no código
+    int navio_horizontal_coluna = 5; // porém, poderiam ser solicitadas ao usuário
+    int navio_vertical_linha = 2;
+    int navio_vertical_coluna = 1;
+    int navio_diagonal1_linha = 6;
+    int navio_diagonal1_coluna = 3;
+    int navio_diagonal2_linha = 3;
+    int navio_diagonal2_coluna = 3;
+    
+    for (int i = 0; i < LINHAS; i++) //loop aninhado para definir todos os elementos 0;
     {
-        for (int j = 0; j <= 9; j++){
+        for (int j = 0; j < COLUNAS; j++)
+        {
+            
+            tabuleiro [i][j] = 0; 
+        }
+    }
+
+    // definindo as posições iniciais dos navio horizontal:
+
+   if(navio_horizontal_linha < 10 && navio_horizontal_coluna < 7)
+   {
+    tabuleiro [navio_horizontal_linha][navio_horizontal_coluna] = 3;
+    tabuleiro [navio_horizontal_linha][navio_horizontal_coluna + 1] = 3;
+    tabuleiro [navio_horizontal_linha][navio_horizontal_coluna + 2] = 3;
+   } else {
+     printf("Redefinir a posição inicial no código do navio horizontal.\n");
+   }
+
+   // definindo as posições iniciais do navio vertical:
+
+   if(navio_vertical_linha < (LINHAS - 3) && navio_vertical_coluna < COLUNAS)
+   {
+    tabuleiro [navio_vertical_linha][navio_vertical_coluna] = 3;
+    tabuleiro [navio_vertical_linha + 1][navio_vertical_coluna] = 3;
+    tabuleiro [navio_vertical_linha + 2][navio_vertical_coluna] = 3;
+   } else {
+     printf("Redefinir a posição inicial no código do navio vertical.\n");
+   }
+
+    // definindo as posições do navio diagonal 1:
+
+    if(navio_diagonal1_linha < (LINHAS - 3) && navio_diagonal1_coluna < (COLUNAS - 3))
+   {
+    tabuleiro [navio_diagonal1_linha][navio_diagonal1_coluna] = 3;
+    tabuleiro [navio_diagonal1_linha + 1][navio_diagonal1_coluna + 1] = 3;
+    tabuleiro [navio_diagonal1_linha + 2][navio_diagonal1_coluna + 2] = 3;
+   } else {
+     printf("Redefinir a posição inicial no código do navio diagonal 1.\n");
+   }
+
+   // definindo as posições do navio diagonal 2:
+
+   if(1 < navio_diagonal2_linha < LINHAS && navio_diagonal2_coluna < (COLUNAS -3))
+   {
+    tabuleiro [navio_diagonal2_linha][navio_diagonal2_coluna] = 3;
+    tabuleiro [navio_diagonal2_linha - 1][navio_diagonal2_coluna + 1] = 3;
+    tabuleiro [navio_diagonal2_linha - 2][navio_diagonal2_coluna + 2] = 3;
+   } else {
+     printf("Redefinir a posição inicial no código do navio diagonal 2.\n");
+   }
+
+   //loop aninhado para imprimir todos os elementos da matriz
+
+    for (int i = 0; i < LINHAS; i++) 
+    {
+        for (int j = 0; j < COLUNAS; j++){
             printf("%d ", tabuleiro[i][j]);
         }
         printf("\n");
